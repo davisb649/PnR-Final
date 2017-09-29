@@ -66,9 +66,9 @@ class Piggy(pigo.Pigo):
     def to_the_right(self):
         """To the right"""
         for x in range(4):
-            self.encR(20)
+            self.encR(10)
             self.encF(5)
-            self.encR(20)
+            self.encR(10)
             self.encB(5)
 
     #def to_the_left(self):
