@@ -69,16 +69,16 @@ class Piggy(pigo.Pigo):
             self.encR(10)
             self.encF(5)
 
-    def to_the_left(self):
+    #def to_the_left(self):
 
 
-    def now_kick(self):
+    #def now_kick(self):
 
 
-    def cha_cha(self):
+    #def cha_cha(self):
 
 
-    def walk_it_by_yourself(self):
+    #def walk_it_by_yourself(self):
 
 
     def nav(self):
