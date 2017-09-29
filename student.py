@@ -82,8 +82,8 @@ class Piggy(pigo.Pigo):
     def now_kick(self):
         """Now kick"""
         for x in range(8):
+            self.encL(9)
             self.encF(5)
-            self.encB(5)
 
 
     #def cha_cha(self):
