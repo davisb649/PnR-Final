@@ -106,7 +106,7 @@ class Piggy(pigo.Pigo):
     def walk_it_by_yourself(self):
         """Walk it by yourself"""
         for x in range (4):
-            for x in range (2):
+            for y in range (2):
                 self.servo(133)
                 self.servo(73)
             if x % 2 == 0:
