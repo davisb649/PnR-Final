@@ -60,8 +60,8 @@ class Piggy(pigo.Pigo):
         #self.to_the_right()
         #self.to_the_left()
         #self.now_kick()
-        self.cha_cha()
-        #self.walk_it_by_yourself()
+        #self.cha_cha()
+        self.walk_it_by_yourself()
 
     def to_the_right(self):
         """To the right"""
@@ -95,7 +95,16 @@ class Piggy(pigo.Pigo):
             self.encB(7)
             self.encF(7)
 
-    #def walk_it_by_yourself(self):
+    def walk_it_by_yourself(self):
+        """Walk it by yourself"""
+        for x in range (2):
+            self.servo(133)
+            self.servo(73)
+            if x == 0:
+                self.encF(18)
+            else:
+                self.encB(18)
+
 
 
     def nav(self):
