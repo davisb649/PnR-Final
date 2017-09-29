@@ -59,8 +59,8 @@ class Piggy(pigo.Pigo):
         ##### WRITE YOUR FIRST PROJECT HERE
         #self.to_the_right()
         #self.to_the_left()
-        self.now_kick()
-        #self.cha_cha()
+        #self.now_kick()
+        self.cha_cha()
         #self.walk_it_by_yourself()
 
     def to_the_right(self):
@@ -82,12 +82,18 @@ class Piggy(pigo.Pigo):
     def now_kick(self):
         """Now kick"""
         for x in range(8):
-            self.encL(9)
-            #self.encF(5)
+            self.encF(5)
+            self.encB(5)
 
 
-    #def cha_cha(self):
-
+    def cha_cha(self):
+        """Chacha real smooth"""
+        for x in range (3):
+            for x in range (2):
+                self.encL(2)
+                self.encR(2)
+            self.encB(7)
+            self.encF(7)
 
     #def walk_it_by_yourself(self):
 
