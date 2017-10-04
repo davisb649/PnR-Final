@@ -70,13 +70,15 @@ class Piggy(pigo.Pigo):
         self.servo(self.MIDPOINT)  # look forward
         # loop 3 more times
         for x in range(5):
+            if x == 0:
+                self.encR(1)
             if not self.is_clear():
                 return False
             print("It's not safe to dance")
             if x == 4:
                 print("I've got enough dancing space")
             else:
-                self.encR(int(18/3))
+                self.encR(6)
         return True
 
 
