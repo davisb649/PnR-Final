@@ -73,7 +73,7 @@ class Piggy(pigo.Pigo):
             if not self.is_clear():
                 return False
             print("It's not safe to dance")
-            self.encR(int(5))
+            self.encR(int(18/int(7/2)))
         print("I've got enough dancing space")
         return True
 
