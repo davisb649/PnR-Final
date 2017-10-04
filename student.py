@@ -60,11 +60,11 @@ class Piggy(pigo.Pigo):
         ##### WRITE YOUR FIRST PROJECT HERE
         if self.safety_check():
             pass
-            # self.to_the_right()
-            # self.to_the_left()
-            # self.now_kick()
-            # self.cha_cha()
-            # self.walk_it_by_yourself()
+            self.to_the_right()
+            self.to_the_left()
+            self.now_kick()
+            self.cha_cha()
+            self.walk_it_by_yourself()
 
     def safety_check(self):
         self.servo(self.MIDPOINT)  # look forward
