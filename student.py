@@ -71,7 +71,7 @@ class Piggy(pigo.Pigo):
         # loop 3 more times
         for x in range(5):
             if x == 0:
-                self.encR(1)
+                self.encR(2)
             if not self.is_clear():
                 return False
             print("It's not safe to dance")
