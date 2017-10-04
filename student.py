@@ -69,7 +69,7 @@ class Piggy(pigo.Pigo):
     def safety_check(self):
         self.servo(self.MIDPOINT)  # look forward
         # loop 3 more times
-        for x in range(4):
+        for x in range(6):
             if not self.is_clear():
                 return False
             print("It's not safe to dance")
