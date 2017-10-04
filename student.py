@@ -77,6 +77,7 @@ class Piggy(pigo.Pigo):
                 return False
             if x == 4:
                 print("I've got enough dancing space")
+                self.encR(1)
             else:
                 self.encR(6)
         return True
