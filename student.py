@@ -19,7 +19,8 @@ class Piggy(pigo.Pigo):
         # Our servo turns the sensor. What angle of the servo( ) method sets it straight?
         self.MIDPOINT = 109
         # YOU DECIDE: How close can an object get (cm) before we have to stop?
-        self.STOP_DIST = 30
+        self.SAFE_STOP_DIST = 30
+        self.HARD_STOP_DIST = 15
         # YOU DECIDE: What left motor power helps straighten your fwd()?
         self.LEFT_SPEED = 130
         # YOU DECIDE: What left motor power helps straighten your fwd()?
@@ -42,7 +43,8 @@ class Piggy(pigo.Pigo):
                 "d": ("Dance", self.dance),
                 "c": ("Calibrate", self.calibrate),
                 "s": ("Check status", self.status),
-                "q": ("Quit", quit_now)
+                "q": ("Quit", quit_now),
+                "a": ("Safety Check", self.safety_check()),
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
@@ -57,11 +59,24 @@ class Piggy(pigo.Pigo):
         """executes a series of methods that add up to a compound dance"""
         print("\n---- LET'S DANCE ----\n")
         ##### WRITE YOUR FIRST PROJECT HERE
-        self.to_the_right()
-        self.to_the_left()
-        self.now_kick()
-        self.cha_cha()
-        self.walk_it_by_yourself()
+        if self.safety_check():
+            self.to_the_right()
+            self.to_the_left()
+            self.now_kick()
+            self.cha_cha()
+            self.walk_it_by_yourself()
+
+    def safety_check(self):
+        self.servo(self.MIDPOINT)  # look forward
+        # loop 3 more times
+        for x in range(4):
+            if not self.is_clear():
+                return False
+            print("It's not safe to dance")
+            self.encR(int(18/4))
+        print("I've got enough dancing space")
+        return True
+
 
     def to_the_right(self):
         """To the right"""
@@ -97,7 +112,7 @@ class Piggy(pigo.Pigo):
     def cha_cha(self):
         """Chacha real smooth"""
         for x in range(3):
-            for x in range(2):
+            for y in range(2):
                 self.encL(2)
                 self.encR(2)
             self.encB(7)
