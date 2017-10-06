@@ -84,7 +84,7 @@ class Piggy(pigo.Pigo):
 
     def to_the_right(self):
         """To the right"""
-        for x in range(3):
+        for x in range(4):
             self.servo(133)
             self.encR(10)
             self.encF(5)
@@ -94,7 +94,7 @@ class Piggy(pigo.Pigo):
 
     def to_the_left(self):
         """To the left"""
-        for x in range(3):
+        for x in range(4):
             self.servo(73)
             self.encL(10)
             self.encB(5)
@@ -104,7 +104,7 @@ class Piggy(pigo.Pigo):
 
     def now_kick(self):
         """Now kick"""
-        for x in range(3):
+        for x in range(4):
             if x % 2 == 0:
                 self.servo(133)
                 self.encL(6)
@@ -123,7 +123,7 @@ class Piggy(pigo.Pigo):
 
     def walk_it_by_yourself(self):
         """Walk it by yourself"""
-        for x in range(3):
+        for x in range(4):
             for y in range(2):
                 self.servo(133)
                 self.servo(73)
