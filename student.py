@@ -61,7 +61,7 @@ class Piggy(pigo.Pigo):
         if self.safety_check():
             self.to_the_right()
             self.to_the_left()
-            self.now_kick()
+            self.spin_time()
             self.cha_cha()
             self.walk_it_by_yourself()
 
@@ -83,7 +83,7 @@ class Piggy(pigo.Pigo):
 
 
     def to_the_right(self):
-        """To the right"""
+        """Circle on the right"""
         for x in range(4):
             self.servo(133)
             self.encR(10)
@@ -93,7 +93,7 @@ class Piggy(pigo.Pigo):
             self.servo(103)
 
     def to_the_left(self):
-        """To the left"""
+        """Circle on the left"""
         for x in range(4):
             self.servo(73)
             self.encL(10)
@@ -102,8 +102,8 @@ class Piggy(pigo.Pigo):
             self.encF(5)
             self.servo(103)
 
-    def now_kick(self):
-        """Now kick"""
+    def spin_time(self):
+        """Pivot w/ servo"""
         for x in range(4):
             if x % 2 == 0:
                 self.servo(133)
