@@ -113,16 +113,16 @@ class Piggy(pigo.Pigo):
                 self.encR(6)
             self.servo(103)
 
-    def cha_cha(self):
-        """Chacha real smooth"""
+    def shake_it(self):
+        """Let's shake"""
         for x in range(2):
             self.encF(4)
             for y in range(2):
                 self.encL(2)
                 self.encR(2)
 
-    def walk_it_by_yourself(self):
-        """Walk it by yourself"""
+    def cha_cha(self):
+        """Chacha real smooth"""
         for x in range(4):
             for y in range(2):
                 self.servo(133)
