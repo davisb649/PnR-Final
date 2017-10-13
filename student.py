@@ -153,7 +153,22 @@ class Piggy(pigo.Pigo):
             if self.is_clear():
                 self.cruise()
             else:
-                self.encR(10)
+                while not self.is_clear():
+                    self.right_rot()
+                rdist = self.dist()
+                self.encR(1)
+                while not self.is_clear():
+                    self.left_rot()
+                ldist = self.dist()
+                if rdist > ldist:
+                    while not self.is_clear():
+                        self.right_rot()
+                    self.fwd()
+                else:
+                    self.fwd()
+
+
+
 
 ####################################################
 ############### STATIC FUNCTIONS
