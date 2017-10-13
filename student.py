@@ -150,17 +150,22 @@ class Piggy(pigo.Pigo):
         print("-------- [ Press CTRL + C to stop me ] --------\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         while True:
+            """if you can, go"""
             if self.is_clear():
                 self.cruise()
             else:
+                """decide"""
                 while not self.is_clear():
+                    """check on your right"""
                     self.right_rot()
                 rdist = self.dist()
                 self.encR(1)
                 while not self.is_clear():
+                    """check on your left"""
                     self.left_rot()
                 ldist = self.dist()
                 if rdist > ldist:
+                    """which is farther?"""
                     while not self.is_clear():
                         self.right_rot()
                     self.fwd()
