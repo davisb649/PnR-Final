@@ -182,6 +182,7 @@ class Piggy(pigo.Pigo):
         for dist in self.scan:
             print("Hi")
             if dist and int(dist) < maxdist:
+                print("Hello")
                 if int(prev_dist - int(dist)) > 50:
                     print("I found obstacle # %d" % obst_found)
                     obst_found += 1
