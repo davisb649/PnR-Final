@@ -185,7 +185,7 @@ class Piggy(pigo.Pigo):
                 if int(prev_dist - int(dist)) > 50:
                     print("I found obstacle # %d" % obst_found)
                     obst_found += 1
-                if int(prev_dist - int(dist)) > 50:
+                if int(prev_dist - int(dist)) < -50:
                     print("I don't see the obstacle anymore")
             prev_dist = dist
         print("\n-----I found a total of %d obstacles.-----\n" % obst_found)
