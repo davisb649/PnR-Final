@@ -44,6 +44,7 @@ class Piggy(pigo.Pigo):
                 "c": ("Calibrate", self.calibrate),
                 "s": ("Check status", self.status),
                 "q": ("Quit", quit_now),
+                "o": ("Obstacle count", self.detect_obst)
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
@@ -171,6 +172,22 @@ class Piggy(pigo.Pigo):
                     self.fwd()
                 else:
                     self.fwd()
+# How many obstacles
+    def detect_obst(self):
+        """Finding them obstacles"""
+        obst_found = 0
+        prev_dist = 150
+        maxdist = input("How far is the maximum distance you want the robot to see?")
+        self.wide_scan()
+        for dist in self.scan:
+            if dist and int(dist) < int(maxdist):
+                if int(prev_dist - int(dist)) > 50:
+                    print("I found obstacle # %d!" % obst_found)
+                    obst_found += 1
+                if int(prev_dist - int(dist)) > 50:
+                    print("I don't see the obstacle anymore")
+            prev_dist = dist
+        print("\n-----I found a total of %d obstacles.-----\n" % obst_found)
 
 
 
