@@ -177,10 +177,10 @@ class Piggy(pigo.Pigo):
         """Finding them obstacles"""
         obst_found = 0
         prev_dist = 150
-        maxdist = input("How far is the maximum distance you want the robot to see?")
+        maxdist = 200
         self.wide_scan()
         for dist in self.scan:
-            if dist and int(dist) < int(maxdist):
+            if dist and int(dist) < maxdist:
                 if int(prev_dist - int(dist)) > 50:
                     print("I found obstacle # %d!" % obst_found)
                     obst_found += 1
