@@ -178,7 +178,7 @@ class Piggy(pigo.Pigo):
         obst_found = 0
         maxdist = 600
         prev_dist = 150
-        for x in 4:
+        for x in range(3):
             self.wide_scan()
             for dist in self.scan:
                 if dist:
@@ -191,6 +191,7 @@ class Piggy(pigo.Pigo):
                             print("I don't see the obstacle anymore")
                     prev_dist = dist
                     """todo: rotate 90"""
+                    self.encR(6)
         print("\n-----I found a total of %d obstacles.-----\n" % obst_found)
 
 
