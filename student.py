@@ -176,17 +176,17 @@ class Piggy(pigo.Pigo):
     def detect_obst(self):
         """Finding the obstacles"""
         obst_found = 0
-        maxdist = 600
+        maxdist = 90
         prev_dist = 150
         for x in range(3):
             self.wide_scan()
             for dist in self.scan:
                 if dist:
-                    if int(prev_dist - int(dist)) > 40:
+                    if int(prev_dist - int(dist)) > 50:
                         if prev_dist < maxdist or int(dist) < maxdist:
                             obst_found += 1
                             print("I found obstacle # %d" % obst_found)
-                    if int(prev_dist - int(dist)) < -40:
+                    if int(prev_dist - int(dist)) < -50:
                         if prev_dist < maxdist or int(dist) < maxdist:
                             print("I don't see the obstacle anymore")
                     prev_dist = dist
