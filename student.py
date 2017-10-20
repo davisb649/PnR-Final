@@ -44,7 +44,8 @@ class Piggy(pigo.Pigo):
                 "c": ("Calibrate", self.calibrate),
                 "s": ("Check status", self.status),
                 "q": ("Quit", quit_now),
-                "o": ("Obstacle count", self.detect_obst)
+                "o": ("Obstacle count", self.detect_obst),
+                "p": ("Safest Path", self.safest_path)
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
@@ -64,7 +65,7 @@ class Piggy(pigo.Pigo):
             self.to_the_left()
             self.spin_time()
             self.cha_cha()
-            self.walk_it_by_yourself()
+            #self.walk_it_by_yourself()
 
     def safety_check(self):
         self.servo(self.MIDPOINT)  # look forward
@@ -175,6 +176,7 @@ class Piggy(pigo.Pigo):
 # How many obstacles
     def detect_obst(self):
         """Finding the obstacles"""
+        """setting beginning parameters to make things be accurate"""
         obst_found = 0
         maxdist = 90
         prev_dist = 150
@@ -184,15 +186,45 @@ class Piggy(pigo.Pigo):
                 if dist:
                     if int(prev_dist - int(dist)) > 50:
                         if prev_dist < maxdist or int(dist) < maxdist:
+                            """when obst begins"""
                             obst_found += 1
                             print("I found obstacle # %d" % obst_found)
                     if int(prev_dist - int(dist)) < -50:
+                        """when obst ends"""
                         if prev_dist < maxdist or int(dist) < maxdist:
                             print("I don't see the obstacle anymore")
+                    """change comparison"""
                     prev_dist = dist
-                    """todo: rotate 90"""
+            """rotate"""
             self.encR(6)
+        """how many total?"""
         print("\n-----I found a total of %d obstacles.-----\n" % obst_found)
+
+    def safest_path(self):
+        """find the safest way to travel; safest is the way with most space btwn obstacles"""
+        angle_go = []
+        width = []
+        free_space = 0
+        largest_angle = 0
+        init_space = 360
+        for x in range(3):
+            self.wide_scan()
+            for angle, dist in enumerate(self.scan):
+                if dist:
+                    if int(dist) < 90:
+                        if free_space == 0:
+                            init_space = angle
+                        free_space += 1
+                    if int(dist) > 91:
+                        free_space = 0
+                        width.append(int(angle-init_space))
+                        angle_go.append(int(angle+init_space)/2)
+        self.encR(6)
+        for number, ang in enumerate(width):
+            if ang > largest_angle:
+                largest_angle = width[number]
+
+
 
 
 
