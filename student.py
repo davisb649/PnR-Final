@@ -184,8 +184,8 @@ class Piggy(pigo.Pigo):
                 if dist:
                     if int(prev_dist - int(dist)) > 40:
                         if prev_dist < maxdist or int(dist) < maxdist:
-                            print("I found obstacle # %d" % obst_found)
                             obst_found += 1
+                            print("I found obstacle # %d" % obst_found)
                     if int(prev_dist - int(dist)) < -40:
                         if prev_dist < maxdist or int(dist) < maxdist:
                             print("I don't see the obstacle anymore")
