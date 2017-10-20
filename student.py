@@ -174,7 +174,7 @@ class Piggy(pigo.Pigo):
                     self.fwd()
 # How many obstacles
     def detect_obst(self):
-        """Finding them obstacles"""
+        """Finding the obstacles"""
         obst_found = 0
         maxdist = 600
         prev_dist = 150
@@ -191,7 +191,7 @@ class Piggy(pigo.Pigo):
                             print("I don't see the obstacle anymore")
                     prev_dist = dist
                     """todo: rotate 90"""
-                    self.encR(6)
+            self.encR(6)
         print("\n-----I found a total of %d obstacles.-----\n" % obst_found)
 
 
