@@ -178,19 +178,19 @@ class Piggy(pigo.Pigo):
         obst_found = 0
         maxdist = 600
         prev_dist = 150
-        self.wide_scan()
-        for dist in self.scan:
-            print("Hi")
-            if dist:
-                print("Hello")
-                if int(prev_dist - int(dist)) > 40:
-                    if prev_dist < maxdist or int(dist) < maxdist:
-                        print("I found obstacle # %d" % obst_found)
-                        obst_found += 1
-                if int(prev_dist - int(dist)) < -40:
-                    if prev_dist < maxdist or int(dist) < maxdist:
-                        print("I don't see the obstacle anymore")
-                prev_dist = dist
+        for x in 4:
+            self.wide_scan()
+            for dist in self.scan:
+                if dist:
+                    if int(prev_dist - int(dist)) > 40:
+                        if prev_dist < maxdist or int(dist) < maxdist:
+                            print("I found obstacle # %d" % obst_found)
+                            obst_found += 1
+                    if int(prev_dist - int(dist)) < -40:
+                        if prev_dist < maxdist or int(dist) < maxdist:
+                            print("I don't see the obstacle anymore")
+                    prev_dist = dist
+                    """todo: rotate 90"""
         print("\n-----I found a total of %d obstacles.-----\n" % obst_found)
 
 
