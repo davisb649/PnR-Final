@@ -197,7 +197,7 @@ class Piggy(pigo.Pigo):
                     """change comparison"""
                     prev_dist = dist
             """rotate"""
-            self.encR(6)
+            self.encR(10)
         """how many total?"""
         print("\n-----I found a total of %d obstacles.-----\n" % obst_found)
 
@@ -230,7 +230,7 @@ class Piggy(pigo.Pigo):
                         width.append(int(angle-init_space))
                         angle_go.append(int(angle+init_space)/2)
             """turn to scan more space"""
-            self.encL(6)
+            self.encL(10)
         """test each of the angle measurements for width to see which is the largest"""
         for number, ang in enumerate(width):
             """if there's a newly discovered largest angle"""
@@ -239,8 +239,8 @@ class Piggy(pigo.Pigo):
                 largest_angle = ang
         """and then go once all of them are tested and a definitive largest is named"""
         self.servo(109)
-        self.encL(int(angle_go[largest_angle]/20))
-        self.encF(18)
+        self.encL(int(angle_go[largest_angle]/12))
+        self.encF(30)
 
     def rotation_testing(self):
         """Just testing how strong the motors are"""
