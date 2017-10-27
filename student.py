@@ -244,7 +244,7 @@ class Piggy(pigo.Pigo):
 
     def rotation_testing(self):
         """Just testing how strong the motors are"""
-        self.encR(27)
+        self.encR(30)
 
 
 
