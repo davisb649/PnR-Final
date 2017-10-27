@@ -234,6 +234,7 @@ class Piggy(pigo.Pigo):
         """test each of the angle measurements for width to see which is the largest"""
         for number, ang in enumerate(width):
             """if there's a newly discovered largest angle"""
+            print("This is space #" + str(number) + " with a width of " + str(ang))
             if ang > largest_angle:
                 """set a the largest angle to be that newly found one"""
                 largest_angle = ang
