@@ -45,7 +45,8 @@ class Piggy(pigo.Pigo):
                 "s": ("Check status", self.status),
                 "q": ("Quit", quit_now),
                 "o": ("Obstacle count", self.detect_obst),
-                "p": ("Safest Path", self.safest_path)
+                "p": ("Safest Path", self.safest_path),
+                "r": ("Rotation Testing", self.rotation_testing)
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
@@ -237,10 +238,13 @@ class Piggy(pigo.Pigo):
                 """set a the largest angle to be that newly found one"""
                 largest_angle = ang
         """and then go once all of them are tested and a definitive largest is named"""
-        self.encR(int(angle_go[largest_angle]/20))
-        self.cruise()
+        self.servo(109)
+        self.encL(int(angle_go[largest_angle]/20))
+        self.encF(18)
 
-
+    def rotation_testing(self):
+        """Just testing how strong the motors are"""
+        self.encR(18)
 
 
 
