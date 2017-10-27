@@ -173,7 +173,7 @@ class Piggy(pigo.Pigo):
                     self.fwd()
                 else:
                     self.fwd()
-# How many obstacles
+
     def detect_obst(self):
         """Finding the obstacles"""
         """setting beginning parameters to make things be accurate"""
@@ -202,28 +202,42 @@ class Piggy(pigo.Pigo):
 
     def safest_path(self):
         """find the safest way to travel; safest is the way with most space btwn obstacles"""
+        """create all lists and set variables to be overwritten"""
         angle_go = []
         width = []
         free_space = 0
         largest_angle = 0
         init_space = 360
+        """scan it 18 encoders"""
         for x in range(3):
+            """take the distances first"""
             self.wide_scan()
             for angle, dist in enumerate(self.scan):
                 if dist:
-                    if int(dist) < 90:
+                    """if it's a free space"""
+                    if int(dist) > 90:
+                        """and it's the start of said space"""
                         if free_space == 0:
+                            """declare where the space starts"""
                             init_space = angle
+                        """add width of space"""
                         free_space += 1
-                    if int(dist) > 91:
+                    """but if it is an object, not a free space"""
+                    if int(dist) < 91:
+                        """the space has ended and put a width and angle measurement into the list"""
                         free_space = 0
                         width.append(int(angle-init_space))
                         angle_go.append(int(angle+init_space)/2)
-        self.encR(6)
+            """turn to scan more space"""
+            self.encR(6)
+        """test each of the angle measurements for width to see which is the largest"""
         for number, ang in enumerate(width):
+            """if there's a newly discovered largest angle"""
             if ang > largest_angle:
-                largest_angle = width[number]
-
+                """set a the largest angle to be that newly found one"""
+                largest_angle = ang
+        """and then go once all of them are tested and a definitive largest is named"""
+        self.encR(angle_go[largest_angle])
 
 
 
