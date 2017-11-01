@@ -215,7 +215,7 @@ class Piggy(pigo.Pigo):
                     if int(dist) < 91:
                         free_space = 0
                         width.append(int(angle-init_space))
-                        angle_go.append(int(((self.turn_track*12)+angle)+((init_tt * 12) + init_space))/2)
+                        angle_go.append(int((self.turn_track+(angle/12))+(init_tt + (init_space/12)))/2)
             self.encL(10)
         for number, ang in enumerate(width):
             if ang > largest_angle:
