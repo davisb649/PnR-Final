@@ -176,8 +176,7 @@ class Piggy(pigo.Pigo):
                     self.fwd()
 
     def detect_obst(self):
-        """Finding the obstacles"""
-        """setting beginning parameters to make things be accurate"""
+        """Turning 360 degrees and looking for all of the obstacles around it"""
         obst_found = 0
         maxdist = 90
         prev_dist = 150
@@ -187,63 +186,46 @@ class Piggy(pigo.Pigo):
                 if dist:
                     if int(prev_dist - int(dist)) > 50:
                         if prev_dist < maxdist or int(dist) < maxdist:
-                            """when obst begins"""
                             obst_found += 1
                             print("I found obstacle # %d" % obst_found)
                     if int(prev_dist - int(dist)) < -50:
-                        """when obst ends"""
                         if prev_dist < maxdist or int(dist) < maxdist:
                             print("I don't see the obstacle anymore")
-                    """change comparison"""
                     prev_dist = dist
-            """rotate"""
             self.encR(10)
-        """how many total?"""
         print("\n-----I found a total of %d obstacles.-----\n" % obst_found)
 
     def safest_path(self):
         """find the safest way to travel; safest is the way with most space btwn obstacles"""
-        """create all lists and set variables to be overwritten"""
         angle_go = []
         width = []
         free_space = 0
         largest_angle = 0
         init_space = 360
-        """scan it 18 encoders"""
+        init_tt = 0
         for x in range(3):
-            """take the distances first"""
             self.wide_scan()
             for angle, dist in enumerate(self.scan):
                 if dist:
-                    """if it's a free space"""
                     if int(dist) > 90:
-                        """and it's the start of said space"""
                         if free_space == 0:
-                            """declare where the space starts"""
                             init_space = angle
-                        """add width of space"""
+                            init_tt = self.turn_track
                         free_space += 1
-                    """but if it is an object, not a free space"""
                     if int(dist) < 91:
-                        """the space has ended and put a width and angle measurement into the list"""
                         free_space = 0
                         width.append(int(angle-init_space))
-                        angle_go.append(int(angle+init_space)/2)
-            """turn to scan more space"""
+                        angle_go.append(int(((self.turn_track*12)+angle)+((init_tt * 12) + init_space))/2)
             self.encL(10)
-        """test each of the angle measurements for width to see which is the largest"""
         for number, ang in enumerate(width):
-            """if there's a newly discovered largest angle"""
             if ang > largest_angle:
-                """set a the largest angle to be that newly found one"""
                 largest_angle = ang
-        """and then go once all of them are tested and a definitive largest is named"""
-        self.servo(109)
+        self.servo(self.MIDPOINT)
         self.encL(int(angle_go[largest_angle]/12))
         self.encF(30)
 
     def rotation_testing(self):
-        """Just testing how strong the motors are"""
+        """Just testing how strong the motors are by rotating until i hit 360 deg"""
         self.encR(30)
 
 
