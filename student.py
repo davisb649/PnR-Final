@@ -215,7 +215,7 @@ class Piggy(pigo.Pigo):
                             init_space = angle
                             init_tt = abs(self.turn_track)
                         free_space += 1
-                    if int(dist) < 91:
+                    if int(dist) < 91 and free_space > 0:
                         print("help")
                         free_space = 0
                         width.append(((abs(self.turn_track)*12)+angle)-(init_space + (init_tt*12)))
