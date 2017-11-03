@@ -220,7 +220,10 @@ class Piggy(pigo.Pigo):
                         free_space = 0
                         width.append(((abs(self.turn_track)*12)+angle)-(init_space + (init_tt*12)))
                         angle_go.append(((abs(self.turn_track)+(angle/12))+(init_tt + (init_space/12)))/2)
-            print("it won't stop spinning")
+        for x in width:
+            print(width[x])
+        for x in angle_go:
+            print(angle_go[x])
             self.encL(10)
         for number, ang in enumerate(width):
             if ang > largest_angle:
