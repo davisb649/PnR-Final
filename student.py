@@ -222,13 +222,13 @@ class Piggy(pigo.Pigo):
                         angle_go.append(((abs(self.turn_track)+(angle/12))+(init_tt + (init_space/12)))/2)
             self.encL(10)
         for x in width:
-            print(x)
+            print("wid: " + x)
         for x in angle_go:
-            print(x)
+            print("ang: " + x)
         for number, ang in enumerate(width):
             if ang > largest_angle:
                 print("why is it doing this")
-                largest_angle = ang
+                largest_angle = number
         print("i have no idea why")
         self.servo(self.MIDPOINT)
         print("send help")
