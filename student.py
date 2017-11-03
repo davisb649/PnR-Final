@@ -46,7 +46,9 @@ class Piggy(pigo.Pigo):
                 "q": ("Quit", quit_now),
                 "o": ("Obstacle count", self.detect_obst),
                 "p": ("Safest Path", self.safest_path),
-                "r": ("Rotation Testing", self.rotation_testing)
+                "r": ("Rotation Testing", self.rotation_testing),
+                "h": ("Restore Heading", self.restore_heading),
+                "t": ("Test Restore Heading", self.rh_test)
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
@@ -195,6 +197,7 @@ class Piggy(pigo.Pigo):
             self.encR(10)
         print("\n-----I found a total of %d obstacles.-----\n" % obst_found)
 
+# TODO: Get it to un this part at all or just unchange what i changed
     def safest_path(self):
         """find the safest way to travel; safest is the way with most space btwn obstacles"""
         angle_go = []
@@ -213,14 +216,19 @@ class Piggy(pigo.Pigo):
                             init_tt = abs(self.turn_track)
                         free_space += 1
                     if int(dist) < 91:
+                        print("help")
                         free_space = 0
                         width.append(((abs(self.turn_track)*12)+angle)-(init_space + (init_tt*12)))
                         angle_go.append(((abs(self.turn_track)+(angle/12))+(init_tt + (init_space/12)))/2)
+            print("it won't stop spinning")
             self.encL(10)
         for number, ang in enumerate(width):
             if ang > largest_angle:
+                print("why is it doing this")
                 largest_angle = ang
+        print("i have no idea why")
         self.servo(self.MIDPOINT)
+        print("send help")
         self.encL(int(angle_go[largest_angle]))
         self.encF(30)
 
@@ -228,6 +236,25 @@ class Piggy(pigo.Pigo):
         """Just testing how strong the motors are by rotating until i hit 360 deg"""
         self.encR(30)
 
+    def restore_heading (self):
+        """turns back the way i'm supposed to be going by using self.turn_track()"""
+        print("Restoring heading!")
+        if self.turn_track > 0:
+            self.encL(abs(self.turn_track))
+        elif self.turn_track < 0:
+            self.encR(abs(self.turn_track))
+
+    def rh_test (self):
+        self.encR(10)
+        self.encL(1)
+        self.encR(8)
+        self.encL(3)
+        self.encR(6)
+        self.encL(5)
+        self.encR(4)
+        self.encL(7)
+        self.encR(2)
+        self.encL(9)
 
 
 ####################################################
