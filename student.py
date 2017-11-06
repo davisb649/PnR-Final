@@ -227,12 +227,18 @@ class Piggy(pigo.Pigo):
             print("ang: " + str(x))
         for number, ang in enumerate(width):
             if ang > largest_angle:
-                print("why is it doing this")
                 largest_angle = number
-        print("i have no idea why")
         self.servo(self.MIDPOINT)
-        print("send help")
-        self.encL(int(angle_go[largest_angle]))
+        enc_go = int(angle_go[largest_angle])
+        if enc_go >= 30:
+            if enc_go >= 60:
+                if enc_go >= 90:
+                    if enc_go >= 120:
+                        enc_go -= 30
+                    enc_go -= 30
+                enc_go -= 30
+            enc_go -= 30
+        self.encL(enc_go)
         self.encF(30)
 
     def rotation_testing(self):
