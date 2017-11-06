@@ -230,20 +230,12 @@ class Piggy(pigo.Pigo):
                 largest_angle = number
         self.servo(self.MIDPOINT)
         enc_go = int(angle_go[largest_angle])
-        if enc_go >= 30:
-            if enc_go >= 60:
-                if enc_go >= 90:
-                    if enc_go >= 120:
-                        enc_go -= 30
-                    enc_go -= 30
-                enc_go -= 30
-            enc_go -= 30
         self.encL(enc_go)
         self.encF(30)
 
     def rotation_testing(self):
         """Just testing how strong the motors are by rotating until i hit 360 deg"""
-        self.encR(33)
+        self.encR(35)
 
     def restore_heading (self):
         """turns back the way i'm supposed to be going by using self.turn_track()"""
