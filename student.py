@@ -243,7 +243,7 @@ class Piggy(pigo.Pigo):
 
     def rotation_testing(self):
         """Just testing how strong the motors are by rotating until i hit 360 deg"""
-        self.encR(30)
+        self.encR(32)
 
     def restore_heading (self):
         """turns back the way i'm supposed to be going by using self.turn_track()"""
@@ -253,7 +253,7 @@ class Piggy(pigo.Pigo):
         elif self.turn_track < 0:
             self.encR(abs(self.turn_track))
 
-    def rh_test (self):
+    def rh_test(self):
         self.encR(10)
         self.encL(1)
         self.encR(8)
