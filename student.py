@@ -194,7 +194,7 @@ class Piggy(pigo.Pigo):
                         if prev_dist < maxdist or int(dist) < maxdist:
                             print("I don't see the obstacle anymore")
                     prev_dist = dist
-            self.encR(10)
+            self.encR(11)
         print("\n-----I found a total of %d obstacles.-----\n" % obst_found)
 
 # TODO: Get it to un this part at all or just unchange what i changed
@@ -219,9 +219,9 @@ class Piggy(pigo.Pigo):
                     if int(dist) < 91 and free_space > 0:
                         print("help")
                         free_space = 0
-                        width.append(int((((abs(self.turn_track)*12)+angle)-(init_space + (init_tt*12)))))
-                        angle_go.append(((abs(self.turn_track)+(angle/12))+(init_tt+(init_space/12)))/2)
-            self.encL(10)
+                        width.append(int((((abs(self.turn_track)*11)+angle)-(init_space + (init_tt*11)))))
+                        angle_go.append(((abs(self.turn_track)+(angle/11))+(init_tt+(init_space/11)))/2)
+            self.encL(11)
         for x in width:
             print("wid: " + str(x))
         for x in angle_go:
