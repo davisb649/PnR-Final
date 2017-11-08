@@ -221,7 +221,7 @@ class Piggy(pigo.Pigo):
                         free_space = 0
                         width.append(int((((abs(self.turn_track)*11)+angle)-(init_space + (init_tt*11)))))
                         angle_go.append(((abs(self.turn_track)+(angle/11))+(init_tt+(init_space/11)))/2)
-            self.encL(11)
+            self.encL(10)
         for x in width:
             print("wid: " + str(x))
         for x in angle_go:
