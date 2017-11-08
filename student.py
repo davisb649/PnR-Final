@@ -200,39 +200,43 @@ class Piggy(pigo.Pigo):
 # TODO: Get it to un this part at all or just unchange what i changed
     def safest_path(self):
         """find the safest way to travel; safest is the way with most space btwn obstacles"""
+        """create all lists and set variables to be overwritten"""
         angle_go = []
         width = []
         free_space = 0
-        largest_angle_ang = 0
-        largest_angle_ind = 0
+        largest_angle = 0
         init_space = 360
-        init_tt = 0
+        """scan it 18 encoders"""
         for x in range(3):
+            """take the distances first"""
             self.wide_scan()
             for angle, dist in enumerate(self.scan):
                 if dist:
+                    """if it's a free space"""
                     if int(dist) > 90:
+                        """and it's the start of said space"""
                         if free_space == 0:
-                            init_space = int(angle)
-                            init_tt = abs(int(self.turn_track))
+                            """declare where the space starts"""
+                            init_space = angle
+                        """add width of space"""
                         free_space += 1
-                    if int(dist) < 91 and free_space > 0:
-                        print("help")
+                    """but if it is an object, not a free space"""
+                    if int(dist) < 91:
+                        """the space has ended and put a width and angle measurement into the list"""
                         free_space = 0
-                        width.append(int((((abs(self.turn_track)*11)+angle)-(init_space + (init_tt*11)))))
-                        angle_go.append(((abs(self.turn_track)+(angle/11))+(init_tt+(init_space/11)))/2)
+                        width.append(int(angle - init_space))
+                        angle_go.append(int(angle + init_space) / 2)
+            """turn to scan more space"""
             self.encL(10)
-        for x in width:
-            print("wid: " + str(x))
-        for x in angle_go:
-            print("ang: " + str(x))
+        """test each of the angle measurements for width to see which is the largest"""
         for number, ang in enumerate(width):
-            if ang > largest_angle_ang:
-                largest_angle_ind = number
-                largest_angle_ang = ang
-        self.servo(self.MIDPOINT)
-        enc_go = angle_go[largest_angle_ind]
-        self.encL(enc_go)
+            """if there's a newly discovered largest angle"""
+            if ang > largest_angle:
+                """set a the largest angle to be that newly found one"""
+                largest_angle = ang
+        """and then go once all of them are tested and a definitive largest is named"""
+        self.servo(109)
+        self.encL(int(angle_go[largest_angle] / 12))
         self.encF(30)
 
     def rotation_testing(self):
