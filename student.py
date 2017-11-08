@@ -203,7 +203,8 @@ class Piggy(pigo.Pigo):
         angle_go = []
         width = []
         free_space = 0
-        largest_angle = 0
+        largest_angle_ang = 0
+        largest_angle_ind = 0
         init_space = 360
         init_tt = 0
         for x in range(3):
@@ -219,24 +220,24 @@ class Piggy(pigo.Pigo):
                         print("help")
                         free_space = 0
                         width.append(int((((abs(self.turn_track)*12)+angle)-(init_space + (init_tt*12)))))
-                        angle_go.append(int(((abs(self.turn_track)+(angle/12))+(init_tt + (init_space/12)))/2))
+                        angle_go.append(((abs(self.turn_track)+(angle/12))+(init_tt+(init_space/12)))/2)
             self.encL(10)
         for x in width:
             print("wid: " + str(x))
         for x in angle_go:
             print("ang: " + str(x))
         for number, ang in enumerate(width):
-            if ang > largest_angle:
-                largest_angle = ang
+            if ang > largest_angle_ang:
+                largest_angle_ind = number
+                largest_angle_ang = ang
         self.servo(self.MIDPOINT)
-        enc_go = int(angle_go[largest_angle])
+        enc_go = angle_go[largest_angle_ind]
         self.encL(enc_go)
         self.encF(30)
 
     def rotation_testing(self):
         """Just testing how strong the motors are by rotating until i hit 360 deg"""
         self.encR(35)
-        self.encL(36)
 
     def restore_heading(self):
         """turns back the way i'm supposed to be going by using self.turn_track()"""
