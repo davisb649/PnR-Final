@@ -146,7 +146,6 @@ class Piggy(pigo.Pigo):
         self.servo(self.MIDPOINT)
         while self.dist() > self.SAFE_STOP_DIST:
             time.sleep(.5)
-        self.stop()
 
     def nav(self):
         """auto pilots and attempts to maintain original heading"""
@@ -237,7 +236,6 @@ class Piggy(pigo.Pigo):
         """and then go once all of them are tested and a definitive largest is named"""
         self.servo(109)
         self.encL(int(angle_go[largest_angle] / 12))
-        self.encF(30)
 
     def rotation_testing(self):
         """Just testing how strong the motors are by rotating until i hit 360 deg"""
@@ -263,6 +261,10 @@ class Piggy(pigo.Pigo):
         self.encL(7)
         self.encR(2)
         self.encL(9)
+
+    def final_travel(self):
+        self.safest_path()
+        self.cruise()
 
 
 ####################################################
