@@ -227,7 +227,7 @@ class Piggy(pigo.Pigo):
             print("ang: " + str(x))
         for number, ang in enumerate(width):
             if ang > largest_angle:
-                largest_angle = number
+                largest_angle = ang
         self.servo(self.MIDPOINT)
         enc_go = int(angle_go[largest_angle])
         self.encL(enc_go)
