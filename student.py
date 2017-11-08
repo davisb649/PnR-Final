@@ -237,8 +237,7 @@ class Piggy(pigo.Pigo):
 
     def rotation_testing(self):
         """Just testing how strong the motors are by rotating until i hit 360 deg"""
-        for x in range(3):
-            self.encL(11)
+        self.encL(66)
 
 
     def restore_heading(self):
