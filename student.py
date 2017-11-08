@@ -48,7 +48,8 @@ class Piggy(pigo.Pigo):
                 "p": ("Safest Path", self.safest_path),
                 "r": ("Rotation Testing", self.rotation_testing),
                 "h": ("Restore Heading", self.restore_heading),
-                "t": ("Test Restore Heading", self.rh_test)
+                "t": ("Test Restore Heading", self.rh_test),
+                "f": ("Final Maze Travel", self.final_travel)
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
