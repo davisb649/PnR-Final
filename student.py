@@ -1,6 +1,7 @@
 import pigo
 import time  # import just in case students need
 import random
+import datetime
 
 # setup logs
 import logging
@@ -16,6 +17,7 @@ class Piggy(pigo.Pigo):
     def __init__(self):
         """The robot's constructor: sets variables and runs menu loop"""
         print("I have been instantiated!")
+        self.start_time = datetime.datetime.utcnow()
         # Our servo turns the sensor. What angle of the servo( ) method sets it straight?
         self.MIDPOINT = 109
         # YOU DECIDE: How close can an object get (cm) before we have to stop?
@@ -154,28 +156,23 @@ class Piggy(pigo.Pigo):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("-------- [ Press CTRL + C to stop me ] --------\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
-        while True:
-            """if you can, go"""
-            if self.is_clear():
-                self.cruise()
-            else:
-                """decide"""
-                while not self.is_clear():
-                    """check on your right"""
-                    self.right_rot()
-                rdist = self.dist()
-                self.encR(1)
-                while not self.is_clear():
-                    """check on your left"""
-                    self.left_rot()
-                ldist = self.dist()
-                if rdist > ldist:
-                    """which is farther?"""
-                    while not self.is_clear():
-                        self.right_rot()
-                    self.fwd()
-                else:
-                    self.fwd()
+        right_now = datetime.datetime.utcnow()
+        difference = (right_now - self.start_time).seconds
+        print("It took you %d seconds to run this" % difference)
+
+    def smooth_turn(self):
+        time_start = datetime.datetime.utcnow()
+        self.servo(self.MIDPOINT)
+        self.right_rot()
+        while True > 100:
+            if self.dist():
+                self.stop()
+                print("I think I found a safe place to go")
+            elif datetime.datetime.utcnow() - time_start > datetime.timedelta(seconds=10):
+                self.stop()
+                print("I give up.")
+            time.sleep(.2)
+
 
     def detect_obst(self):
         """Turning 360 degrees and looking for all of the obstacles around it"""
@@ -266,6 +263,7 @@ class Piggy(pigo.Pigo):
     def final_travel(self):
         self.safest_path()
         self.cruise()
+
 
 
 ####################################################
