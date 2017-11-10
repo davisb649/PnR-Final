@@ -224,7 +224,7 @@ class Piggy(pigo.Pigo):
                         """the space has ended and put a width and angle measurement into the list"""
                         free_space = 0
                         width.append(int(angle - init_space))
-                        angle_go.append(int(angle + init_space) / 2)
+                        angle_go.append((angle+init_space)/2-60)
             """turn to scan more space"""
             self.encL(9)
         """test each of the angle measurements for width to see which is the largest"""
