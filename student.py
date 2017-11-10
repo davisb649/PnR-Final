@@ -223,7 +223,7 @@ class Piggy(pigo.Pigo):
                     if int(dist) < 91:
                         """the space has ended and put a width and angle measurement into the list"""
                         free_space = 0
-                        width.append(int(angle - init_space))
+                        width.append(angle-init_space)
                         angle_go.append((angle+init_space)/2-60)
             """turn to scan more space"""
             self.encL(9)
