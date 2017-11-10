@@ -50,8 +50,7 @@ class Piggy(pigo.Pigo):
                 "p": ("Safest Path", self.safest_path),
                 "r": ("Rotation Testing", self.rotation_testing),
                 "h": ("Restore Heading", self.restore_heading),
-                "t": ("Test Restore Heading", self.rh_test),
-                "f": ("Final Maze Travel", self.final_travel)
+                "t": ("Test Restore Heading", self.rh_test)
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
@@ -159,6 +158,9 @@ class Piggy(pigo.Pigo):
         right_now = datetime.datetime.utcnow()
         difference = (right_now - self.start_time).seconds
         print("It took you %d seconds to run this" % difference)
+        self.safest_path()
+        self.cruise()
+
 
     def smooth_turn(self):
         time_start = datetime.datetime.utcnow()
@@ -260,9 +262,6 @@ class Piggy(pigo.Pigo):
         self.encR(2)
         self.encL(9)
 
-    def final_travel(self):
-        self.safest_path()
-        self.cruise()
 
 
 
