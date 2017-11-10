@@ -226,7 +226,7 @@ class Piggy(pigo.Pigo):
                         width.append(int(angle - init_space))
                         angle_go.append(int(angle + init_space) / 2)
             """turn to scan more space"""
-            self.encL(10)
+            self.encL(9)
         """test each of the angle measurements for width to see which is the largest"""
         for number, ang in enumerate(width):
             """if there's a newly discovered largest angle"""
