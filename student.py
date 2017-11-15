@@ -179,8 +179,10 @@ class Piggy(pigo.Pigo):
         right_now = datetime.datetime.utcnow()
         difference = (right_now - self.start_time).seconds
         print("It took you %d seconds to run this" % difference)
-        self.space_checking()
-        self.cruise()
+        while True:
+            self.cruise()
+            while self.dist() < self.SAFE_STOP_DIST:
+                self.space_checking()
 
 
     def smooth_turn(self):
