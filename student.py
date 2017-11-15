@@ -165,8 +165,20 @@ class Piggy(pigo.Pigo):
         self.encR(left_tt)
         if right_tt > left_tt:
             self.encL(left_tt)
+            while self.dist() > self.SAFE_STOP_DIST:
+                self.encL(1)
+                time.sleep(.2)
+            left_end_tt = abs(self.turn_track)
+            self.encR(left_end_tt - orig_tt)
+            self.encL((left_end_tt+left_tt)/2)
         else:
             self.encR(right_tt)
+            while self.dist() > self.SAFE_STOP_DIST:
+                self.encR(1)
+                time.sleep(.2)
+            right_end_tt = self.turn_track
+            self.encL(right_end_tt - orig_tt)
+            self.encR((right_end_tt+left_tt)/2)
 
 
 
@@ -180,9 +192,9 @@ class Piggy(pigo.Pigo):
         difference = (right_now - self.start_time).seconds
         print("It took you %d seconds to run this" % difference)
         while True:
-            while self.dist() > self.SAFE_STOP_DIST:
+            if self.dist() > self.SAFE_STOP_DIST:
                 self.cruise()
-            while self.dist() < self.SAFE_STOP_DIST:
+            if self.dist() < self.SAFE_STOP_DIST:
                 self.space_checking()
 
 
