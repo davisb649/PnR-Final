@@ -146,8 +146,24 @@ class Piggy(pigo.Pigo):
         """Go straight while the path is clear"""
         self.fwd()
         self.servo(self.MIDPOINT)
-        while self.dist() > self.SAFE_STOP_DIST:
+        while self.dist() < self.SAFE_STOP_DIST:
             time.sleep(.5)
+
+    def space_checking(self):
+        """check to the left and to the right and figure out which way to go that's closest to the original direction"""
+        self.encB(4)
+        orig_tt = self.turn_track
+        while self.dist() < self.SAFE_STOP_DIST:
+            self.encR(1)
+            time.sleep(.2)
+        right_tt = self.turn_track
+        self.encL(self.turn_track - orig_tt)
+        while self.dist() < self.SAFE_STOP_DIST:
+            self.encL(1)
+            time.sleep(.2)
+        left_tt = self.turn_track
+
+
 
     def nav(self):
         """auto pilots and attempts to maintain original heading"""
@@ -239,7 +255,7 @@ class Piggy(pigo.Pigo):
 
     def rotation_testing(self):
         """Just testing how strong the motors are by rotating until i hit 360 deg"""
-        self.encL(36)
+        self.encR(36)
 
 
     def restore_heading(self):
