@@ -180,7 +180,8 @@ class Piggy(pigo.Pigo):
         difference = (right_now - self.start_time).seconds
         print("It took you %d seconds to run this" % difference)
         while True:
-            self.cruise()
+            while self.dist() > self.SAFE_STOP_DIST:
+                self.cruise()
             while self.dist() < self.SAFE_STOP_DIST:
                 self.space_checking()
 
