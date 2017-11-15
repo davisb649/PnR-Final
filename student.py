@@ -168,16 +168,16 @@ class Piggy(pigo.Pigo):
             while self.dist() > self.SAFE_STOP_DIST:
                 self.encL(1)
                 time.sleep(.2)
-            left_end_tt = abs(self.turn_track)
-            self.encR(left_end_tt - orig_tt)
+            left_end_tt = abs(self.turn_track - orig_tt)
+            self.encR(left_end_tt)
             self.encL((left_end_tt+left_tt)/2)
         else:
             self.encR(right_tt)
             while self.dist() > self.SAFE_STOP_DIST:
                 self.encR(1)
                 time.sleep(.2)
-            right_end_tt = self.turn_track
-            self.encL(right_end_tt - orig_tt)
+            right_end_tt = self.turn_track - orig_tt
+            self.encL(right_end_tt)
             self.encR((right_end_tt+left_tt)/2)
 
 
