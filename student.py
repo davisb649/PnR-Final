@@ -89,7 +89,6 @@ class Piggy(pigo.Pigo):
                 self.encR(6)
         return True
 
-
     def to_the_right(self):
         """Circle on the right"""
         for x in range(4):
@@ -154,12 +153,12 @@ class Piggy(pigo.Pigo):
         """check to the left and to the right and figure out which way to go that's closest to the original direction"""
         self.encB(4)
         orig_tt = self.turn_track
-        while self.dist() < self.SAFE_STOP_DIST:
+        while self.dist() < (self.SAFE_STOP_DIST + 5):
             self.encR(1)
             time.sleep(.2)
         right_tt = self.turn_track - orig_tt
         self.encL(right_tt)
-        while self.dist() < self.SAFE_STOP_DIST:
+        while self.dist() < (self.SAFE_STOP_DIST + 5):
             self.encL(1)
             time.sleep(.2)
         left_tt = abs(self.turn_track - orig_tt)
@@ -201,7 +200,6 @@ class Piggy(pigo.Pigo):
             if self.dist() < self.SAFE_STOP_DIST:
                 self.space_checking()
 
-
     def smooth_turn(self):
         time_start = datetime.datetime.utcnow()
         self.servo(self.MIDPOINT)
@@ -214,7 +212,6 @@ class Piggy(pigo.Pigo):
                 self.stop()
                 print("I give up.")
             time.sleep(.2)
-
 
     def detect_obst(self):
         """Turning 360 degrees and looking for all of the obstacles around it"""
@@ -280,7 +277,6 @@ class Piggy(pigo.Pigo):
         """Just testing how strong the motors are by rotating until i hit 360 deg"""
         self.encL(36)
         print(self.turn_track)
-
 
     def restore_heading(self):
         """turns back the way i'm supposed to be going by using self.turn_track()"""
