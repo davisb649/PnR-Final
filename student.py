@@ -165,6 +165,10 @@ class Piggy(pigo.Pigo):
         self.encR(left_tt)
         if right_tt > left_tt:
             self.encL(left_tt + 2)
+            if self.is_clear():
+                pass
+            else:
+                self.encR(left_tt + 4 + right_tt)
             '''while self.dist() > self.SAFE_STOP_DIST:
                 self.encL(1)
                 time.sleep(.2)
@@ -173,6 +177,10 @@ class Piggy(pigo.Pigo):
             self.encL((left_end_tt+left_tt)/2)'''
         else:
             self.encR(right_tt + 2)
+            if self.is_clear():
+                pass
+            else:
+                self.encL(left_tt + 4 + right_tt)
             '''while self.dist() > self.SAFE_STOP_DIST:
                 self.encR(1)
                 time.sleep(.2)
