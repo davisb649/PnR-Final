@@ -278,6 +278,10 @@ class Pigo(object):
         print('My safe stop distance is ' + str(self.SAFE_STOP_DIST) + 'cm')
         print('My hard stop distance is ' + str(self.HARD_STOP_DIST) + 'cm')
 
+    def enc_tester(self):
+        print(self.dist())
+        self.encF(1)
+        print(self.dist())
 
 def stop_now():
     try:
