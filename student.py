@@ -146,7 +146,7 @@ class Piggy(pigo.Pigo):
         """Go straight while the path is clear"""
         self.fwd()
         self.servo(self.MIDPOINT)
-        while self.dist() < self.SAFE_STOP_DIST:
+        if self.dist() < self.SAFE_STOP_DIST:
             time.sleep(.5)
 
     def space_checking(self):
@@ -163,30 +163,18 @@ class Piggy(pigo.Pigo):
             time.sleep(.2)
         left_tt = abs(self.turn_track - orig_tt)
         self.encR(left_tt)
-        if right_tt > left_tt:
+        if (right_tt-abs(self.turn_track)) > (left_tt-abs(self.turn_track)):
             self.encL(left_tt + 2)
             if self.is_clear():
                 pass
             else:
                 self.encR(left_tt + 4 + right_tt)
-            '''while self.dist() > self.SAFE_STOP_DIST:
-                self.encL(1)
-                time.sleep(.2)
-            left_end_tt = abs(self.turn_track - orig_tt)
-            self.encR(left_end_tt)
-            self.encL((left_end_tt+left_tt)/2)'''
         else:
             self.encR(right_tt + 2)
             if self.is_clear():
                 pass
             else:
                 self.encL(left_tt + 4 + right_tt)
-            '''while self.dist() > self.SAFE_STOP_DIST:
-                self.encR(1)
-                time.sleep(.2)
-            right_end_tt = self.turn_track - orig_tt
-            self.encL(right_end_tt)
-            self.encR((right_end_tt+left_tt)/2)'''
 
     def enc_tester(self):
         print(self.dist())
