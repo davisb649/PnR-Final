@@ -50,7 +50,8 @@ class Piggy(pigo.Pigo):
                 "p": ("Safest Path", self.safest_path),
                 "r": ("Rotation Testing", self.rotation_testing),
                 "h": ("Restore Heading", self.restore_heading),
-                "t": ("Test Restore Heading", self.rh_test)
+                "t": ("Test Restore Heading", self.rh_test),
+                "e": ("Encoder Testing", self.enc_tester)
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
@@ -180,7 +181,10 @@ class Piggy(pigo.Pigo):
             self.encL(right_end_tt)
             self.encR((right_end_tt+left_tt)/2)'''
 
-
+    def enc_tester(self):
+        print(self.dist())
+        self.encF(1)
+        print(self.dist())
 
     def nav(self):
         """auto pilots and attempts to maintain original heading"""
