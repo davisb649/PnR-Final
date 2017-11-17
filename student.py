@@ -164,21 +164,21 @@ class Piggy(pigo.Pigo):
         left_tt = abs(self.turn_track - orig_tt)
         self.encR(left_tt)
         if right_tt > left_tt:
-            self.encL(left_tt)
-            while self.dist() > self.SAFE_STOP_DIST:
+            self.encL(left_tt + 2)
+            '''while self.dist() > self.SAFE_STOP_DIST:
                 self.encL(1)
                 time.sleep(.2)
             left_end_tt = abs(self.turn_track - orig_tt)
             self.encR(left_end_tt)
-            self.encL((left_end_tt+left_tt)/2)
+            self.encL((left_end_tt+left_tt)/2)'''
         else:
-            self.encR(right_tt)
-            while self.dist() > self.SAFE_STOP_DIST:
+            self.encR(right_tt + 2)
+            '''while self.dist() > self.SAFE_STOP_DIST:
                 self.encR(1)
                 time.sleep(.2)
             right_end_tt = self.turn_track - orig_tt
             self.encL(right_end_tt)
-            self.encR((right_end_tt+left_tt)/2)
+            self.encR((right_end_tt+left_tt)/2)'''
 
 
 
@@ -232,7 +232,6 @@ class Piggy(pigo.Pigo):
             self.encR(11)
         print("\n-----I found a total of %d obstacles.-----\n" % obst_found)
 
-# TODO: Get it to un this part at all or just unchange what i changed
     def safest_path(self):
         """find the safest way to travel; safest is the way with most space btwn obstacles"""
         """create all lists and set variables to be overwritten"""
