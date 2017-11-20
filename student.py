@@ -161,9 +161,15 @@ class Piggy(pigo.Pigo):
         while self.dist() < (self.SAFE_STOP_DIST + 5):
             self.encL(1)
             time.sleep(.2)
-        left_tt = abs(self.turn_track - orig_tt)
+        left_tt = self.turn_track - orig_tt
         self.encR(left_tt)
-        if abs((right_tt-abs(self.turn_track))) < abs((left_tt-abs(self.turn_track))):
+        if abs(right_tt) > abs(left_tt):
+            self.encL(left_tt + 2)
+        else:
+            self.encR(right_tt + 2)
+
+
+        '''if abs(right_tt-abs(self.turn_track)) < abs((left_tt-abs(self.turn_track))):
             self.encL(left_tt + 2)
             if self.is_clear():
                 pass
@@ -174,7 +180,7 @@ class Piggy(pigo.Pigo):
             if self.is_clear():
                 pass
             else:
-                self.encL(left_tt + 4 + right_tt)
+                self.encL(left_tt + 4 + right_tt)'''
 
     def enc_tester(self):
         print(self.dist())
