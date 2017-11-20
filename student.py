@@ -147,20 +147,20 @@ class Piggy(pigo.Pigo):
         self.fwd()
         self.servo(self.MIDPOINT)
         if self.dist() < self.SAFE_STOP_DIST:
-            time.sleep(.5)
+            time.sleep(.1)
 
     def space_checking(self):
         """check to the left and to the right and figure out which way to go that's closest to the original direction"""
         self.encB(4)
         orig_tt = self.turn_track
         while self.dist() < (self.SAFE_STOP_DIST + 5):
-            self.encR(1)
-            time.sleep(.2)
+            self.encR(2)
+            time.sleep(.1)
         right_tt = self.turn_track - orig_tt
         self.encL(right_tt)
         while self.dist() < (self.SAFE_STOP_DIST + 5):
-            self.encL(1)
-            time.sleep(.2)
+            self.encL(2)
+            time.sleep(.1)
         left_tt = self.turn_track - orig_tt
         self.encR(abs(left_tt))
         if abs(right_tt) > abs(left_tt):
