@@ -199,7 +199,7 @@ class Piggy(pigo.Pigo):
         while True:
             if self.dist() > self.SAFE_STOP_DIST:
                 self.cruise()
-            if self.dist() < self.SAFE_STOP_DIST:
+            else:
                 self.space_checking()
 
     def smooth_turn(self):
