@@ -162,7 +162,7 @@ class Piggy(pigo.Pigo):
             self.encL(1)
             time.sleep(.2)
         left_tt = self.turn_track - orig_tt
-        self.encR(left_tt)
+        self.encR(abs(left_tt))
         if abs(right_tt) > abs(left_tt):
             self.encL(abs(left_tt + 2))
         else:
