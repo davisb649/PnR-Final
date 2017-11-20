@@ -294,9 +294,6 @@ class Piggy(pigo.Pigo):
         self.encR(2)
         self.encL(9)
 
-
-
-
 ####################################################
 ############### STATIC FUNCTIONS
 

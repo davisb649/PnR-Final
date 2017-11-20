@@ -99,8 +99,7 @@ class Pigo(object):
 
     def fwd(self):
         """shell command for GoPiGo fwd"""
-        for x in range(3):
-            fwd()
+        fwd()
 
     def right_rot(self):
         """encoder free turn"""
