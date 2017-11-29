@@ -164,8 +164,10 @@ class Piggy(pigo.Pigo):
         left_tt = self.turn_track - orig_tt
         self.encR(abs(left_tt))
         if abs(right_tt) > abs(left_tt):
+            print("going to the left")
             self.encL(abs(left_tt) + 2)
         else:
+            print("going to the right")
             self.encR(abs(right_tt + 2))
         self.servo(self.MIDPOINT - 2)
         if self.dist() > self.SAFE_STOP_DIST:
@@ -177,6 +179,7 @@ class Piggy(pigo.Pigo):
                     self.restore_heading()
         else:
             self.restore_heading()
+        self.servo(self.MIDPOINT)
 
         '''if abs(right_tt-abs(self.turn_track)) < abs((left_tt-abs(self.turn_track))):
             self.encL(left_tt + 2)
