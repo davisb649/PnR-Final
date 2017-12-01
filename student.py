@@ -285,8 +285,8 @@ class Piggy(pigo.Pigo):
 
     def rotation_testing(self):
         """Just testing how strong the motors are by rotating until i hit 360 deg"""
-        self.encL(29)
-        print(self.turn_track)
+        self.encL(30)
+        self.restore_heading()
 
     def restore_heading(self):
         """turns back the way i'm supposed to be going by using self.turn_track()"""
