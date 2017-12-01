@@ -32,6 +32,7 @@ class Piggy(pigo.Pigo):
         # Our scan list! The index will be the degree and it will store distance
         self.scan = [None] * 180
         self.set_speed(self.LEFT_SPEED, self.RIGHT_SPEED)
+        self.clear = False
         # let's use an event-driven model, make a handler of sorts to listen for "events"
         while True:
             self.stop()
@@ -169,30 +170,25 @@ class Piggy(pigo.Pigo):
         else:
             print("going to the right")
             self.encR(abs(right_tt + 2))
-        '''self.servo(self.MIDPOINT - 2)
-        if self.dist() > self.SAFE_STOP_DIST:
-            self.servo(self.MIDPOINT+2)
-            if self.dist() > self.SAFE_STOP_DIST:
-                pass
-            else:
-                if self.turn_track > 0:
-                    self.restore_heading()
-        else:
-            self.restore_heading()'''
-        self.servo(self.MIDPOINT)
+        self.clear = self.servo_search_nav()
+        if not self.clear:
+            self.restore_heading()
+        self.clear = False
 
-        '''if abs(right_tt-abs(self.turn_track)) < abs((left_tt-abs(self.turn_track))):
-            self.encL(left_tt + 2)
-            if self.is_clear():
-                pass
-            else:
-                self.encR(left_tt + 4 + right_tt)
-        else:
-            self.encR(right_tt + 2)
-            if self.is_clear():
-                pass
-            else:
-                self.encL(left_tt + 4 + right_tt)'''
+
+
+    def servo_search_nav(self):
+        self.servo(self.MIDPOINT - 2)
+        if self.dist() > self.SAFE_STOP_DIST:
+            self.servo(self.MIDPOINT + 2)
+            if self.dist() > self.SAFE_STOP_DIST:
+                self.servo(self.MIDPOINT)
+                return True
+        self.servo(self.MIDPOINT)
+        return False
+
+
+
 
     def enc_tester(self):
         print(self.dist())
