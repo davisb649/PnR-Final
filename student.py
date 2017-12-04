@@ -21,8 +21,8 @@ class Piggy(pigo.Pigo):
         # Our servo turns the sensor. What angle of the servo( ) method sets it straight?
         self.MIDPOINT = 109
         # YOU DECIDE: How close can an object get (cm) before we have to stop?
-        self.SAFE_STOP_DIST = 30
-        self.HARD_STOP_DIST = 30
+        self.SAFE_STOP_DIST = 35
+        self.HARD_STOP_DIST = 5
         # YOU DECIDE: What left motor power helps straighten your fwd()?
         self.LEFT_SPEED = 124
         # YOU DECIDE: What left motor power helps straighten your fwd()?
@@ -165,10 +165,8 @@ class Piggy(pigo.Pigo):
         left_tt = self.turn_track - orig_tt
         self.encR(abs(left_tt))
         if abs(right_tt) > abs(left_tt):
-            print("going to the left")
             self.encL(abs(left_tt) + 2)
         else:
-            print("going to the right")
             self.encR(abs(right_tt + 2))
         self.clear = self.servo_search_nav()
         if not self.clear:
