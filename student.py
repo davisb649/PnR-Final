@@ -165,9 +165,9 @@ class Piggy(pigo.Pigo):
         left_tt = self.turn_track - orig_tt
         self.encR(abs(left_tt))
         if abs(right_tt + orig_tt) > abs(left_tt + orig_tt):
-            self.encL(abs(left_tt) + 2)
+            self.encL(abs(left_tt) + 1)
         else:
-            self.encR(abs(right_tt + 2))
+            self.encR(abs(right_tt + 1))
         self.clear = self.servo_search_nav()
         if not self.clear:
             self.restore_heading()
